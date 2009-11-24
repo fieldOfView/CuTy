@@ -3,13 +3,14 @@ package com.fieldofview.util {
 	import flash.ui.ContextMenuItem;
 	import flash.display.*;
 	import flash.events.*;
+	import flash.utils.getTimer;
 
-//	import flash.external.ExternalInterface;
-	
 	public class FullscreenMenu {
 		private var contextMenu:ContextMenu;
 		private var customItem:ContextMenuItem;
 		private var stage:Stage;
+		
+		private var lastClickTime:int;
 
 		public function FullscreenMenu(__parent:Sprite):void {
 			contextMenu = new ContextMenu();
@@ -17,33 +18,36 @@ package com.fieldofview.util {
 			contextMenu.hideBuiltInItems();
 			
 			customItem = new ContextMenuItem("Fullscreen" );
-			customItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, goFullScreen);
+			customItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, contextMenuItemHandler);
 			contextMenu.customItems.push( customItem );
 			customItem = new ContextMenuItem("Exit fullscreen" );
-			customItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, exitFullScreen);
+			customItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, contextMenuItemHandler);
 			contextMenu.customItems.push( customItem );
 			
 			__parent.contextMenu = contextMenu;
-			stage = __parent.stage;
 			
-//			ExternalInterface.addCallback("setFullscreen", fullScreen);
+			stage = __parent.stage;
+			// We can't use MouseEvent.DOUBLE_CLICK, as that requires stage.mouseChildren = false;
+			// When stage.mouseChildren = false, the contextMenu does not work.
+			stage.addEventListener(MouseEvent.CLICK, clickHandler);
 		}
-/*		
-		public function fullScreen(__value:Boolean):void {
-			if(__value) 
-				stage.displayState = StageDisplayState.FULL_SCREEN;
-			else
-				stage.displayState = StageDisplayState.NORMAL;
-		}
-*/		
-		// functions to enter and leave full screen mode
-		private function goFullScreen(event:ContextMenuEvent):void{
-			stage.displayState = StageDisplayState.FULL_SCREEN;
-		}
-		private function exitFullScreen(event:ContextMenuEvent):void{
-			stage.displayState = StageDisplayState.NORMAL;
-		}
+
+		private function contextMenuItemHandler(event:ContextMenuEvent):void {
+            toggleFullScreen();
+        }
 		
+		private function clickHandler(event:MouseEvent):void {
+			var currentTime:int = getTimer();
+			if(currentTime - lastClickTime < 250) {
+				toggleFullScreen();
+			}
+			lastClickTime = currentTime;
+		}
+
+		private function toggleFullScreen():void {
+			stage.displayState = (stage.displayState==StageDisplayState.NORMAL)?StageDisplayState.FULL_SCREEN:StageDisplayState.NORMAL;
+		}
+
 		// function to enable and disable the context menu items,
 		// based on what mode we are in.
 		private function menuHandler(event:ContextMenuEvent):void{
