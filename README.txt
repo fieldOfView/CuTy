@@ -2,7 +2,13 @@ CuTy
 ================================================================
 
 CuTy is a tiny, dedicated viewer for (single node, JPEG encoded, 
-cubic) QTVR .mov files based for Flash Player 10 and newer.
+cubic) QTVR .mov files based for Flash Player 10 and newer. Its 
+functionality is deliberately kept minimal.
+
+CuTy was originally written by Aldo Hoeben 
+(aldo@fieldofview.com) as a means to easily display uploaded 
+QTVR files. It was first used publically at http://sziget360.com
+and later at http://ivrpa.org and its subsites.
 
 
 License
@@ -36,8 +42,11 @@ SDK, or you can drop the swf file in your browser.
 
 When included in an HTML file you may use the same technique
 or you can keep the name of the CuTy.swf as is and supply the 
-path to the Quicktime VR file setting the FlashParam to 
+path to the Quicktime VR file setting the FlashVars to 
 "mov=cubicvr.swf".
+
+The fullscreen functionality of the viewer is only available
+if the parent HTML specifically allows fullscreen display. 
 
 For more information about how to use CuTy.swf, see the CuTy
 website:
