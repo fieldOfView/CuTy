@@ -52,8 +52,6 @@ package com.fieldofview.qtparser {
 						atom.length = movContent.readUnsignedInt();
 						atom.type = movContent.readUTFBytes(4);
 
-						//sendLog("Found atom: " + atom.type, INFO);
-
 						movOffset += atom.length;
 						if (atom.type == "moov") {
 							break;
@@ -71,7 +69,6 @@ package com.fieldofview.qtparser {
 					moovStart = atom.start + 8;
 					moovLength = atom.length - 8;
 					parseState++;
-
 					// NB: don't 'break;'
 
 				case LOAD_MOOV:	// wait until 'moov' atom has fully loaded
@@ -257,7 +254,7 @@ package com.fieldofview.qtparser {
 			// 'pdat' interesting bits: N3/n2ver/N2ref/f9cam/N2imgsize/n2imgframes/N2hotsize/n2hotframes/N1flags/N1type
 			pdat.position = 88; 
 			if (pdat.readUTFBytes(4) != "cube") {
-				sendLog("not a cubic panorama.", ERROR);
+				sendLog("only cubic panoramas are supported.", ERROR);
 				return false;
 			} 
 			pdat.position = 68;

@@ -87,11 +87,7 @@ package {
 			}
 		}
 
-
 		private function streamProgress(__event:Event):Boolean {
-			//logger.send("Progress: " + movStream.bytesLoaded.toString() + " of " + movStream.bytesTotal.toString() + 
-			//	" (" + Math.round(100 * movStream.bytesLoaded / movStream.bytesTotal).toString() + "%)", Logger.INFO);
-			
 			if(!movStructure.allDone) {
 				if(!movStructure.handleStream()) {
 					return false;

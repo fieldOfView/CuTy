@@ -63,8 +63,6 @@ package com.fieldofview.util {
 		}
 
 		private function progressHandler(__event:ProgressEvent):void {
-			//trace("Progress: " + __event.bytesLoaded.toString() + " of " + __event.bytesTotal.toString());
-
 			if ( this.stream.bytesAvailable > 0 ) {
 				var _buffer:ByteArray = new ByteArray();
 				// read newly received bytes from stream
