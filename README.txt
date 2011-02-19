@@ -48,8 +48,7 @@ path to the Quicktime VR file setting the FlashVars to
 The fullscreen functionality of the viewer is only available
 if the parent HTML specifically allows fullscreen display. 
 
-For more information about how to use CuTy.swf, see the CuTy
-website:
-http://opensource.ivrpa.org/cuty
+For more information about how to use CuTy.swf, see:
+http://fieldofview.com/projects/cuty
  
 
