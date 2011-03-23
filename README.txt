@@ -14,8 +14,16 @@ and later at http://ivrpa.org and its subsites.
 License
 -------
 
-CuTy and its sourcecode is released under the MIT License, see
-LICENSE.txt.
+This software is licensed under the Creative Commons Attribution
+version 3.0 or later:
+http://creativecommons.org/licenses/by/3.0/
+
+In a nutshell, this means you are free to use the software and 
+its source code in your projects. If you use (parts of) the 
+source code in another software project, you are required to 
+add attribution to the author. I encourage you to share the 
+your source code in a similar fashion, but it is not a 
+requirement.
 
 
 How to build
